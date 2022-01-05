@@ -4,22 +4,20 @@
 #
 Name     : xmldiff
 Version  : 2.4
-Release  : 5
+Release  : 6
 URL      : https://files.pythonhosted.org/packages/76/36/a3e41bf7c01f1110d7b5589ca74d2927d3736a5b43ee63053faf3483b991/xmldiff-2.4.tar.gz
 Source0  : https://files.pythonhosted.org/packages/76/36/a3e41bf7c01f1110d7b5589ca74d2927d3736a5b43ee63053faf3483b991/xmldiff-2.4.tar.gz
 Summary  : Creates diffs of XML files
 Group    : Development/Tools
 License  : MIT
 Requires: xmldiff-bin = %{version}-%{release}
+Requires: xmldiff-license = %{version}-%{release}
 Requires: xmldiff-python = %{version}-%{release}
 Requires: xmldiff-python3 = %{version}-%{release}
-Requires: lxml
-Requires: setuptools
-Requires: six
 BuildRequires : buildreq-distutils3
-BuildRequires : lxml
-BuildRequires : setuptools
-BuildRequires : six
+BuildRequires : pypi(lxml)
+BuildRequires : pypi(setuptools)
+BuildRequires : pypi(six)
 
 %description
 ========
@@ -27,9 +25,18 @@ BuildRequires : six
 %package bin
 Summary: bin components for the xmldiff package.
 Group: Binaries
+Requires: xmldiff-license = %{version}-%{release}
 
 %description bin
 bin components for the xmldiff package.
+
+
+%package license
+Summary: license components for the xmldiff package.
+Group: Default
+
+%description license
+license components for the xmldiff package.
 
 
 %package python
@@ -63,7 +70,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1632249151
+export SOURCE_DATE_EPOCH=1641417098
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -83,6 +90,8 @@ PYTHONPATH=%{buildroot}$(python -c "import sys; print(sys.path[-1])") python set
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/xmldiff
+cp %{_builddir}/xmldiff-2.4/LICENSE.txt %{buildroot}/usr/share/package-licenses/xmldiff/f3f2bfc0537c3f3d366e24c8ec9fff2480b37796
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -95,6 +104,10 @@ echo ----[ mark ]----
 %defattr(-,root,root,-)
 /usr/bin/xmldiff
 /usr/bin/xmlpatch
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/xmldiff/f3f2bfc0537c3f3d366e24c8ec9fff2480b37796
 
 %files python
 %defattr(-,root,root,-)
