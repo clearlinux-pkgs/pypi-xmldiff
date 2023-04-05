@@ -4,10 +4,10 @@
 # Using build pattern: distutils3
 #
 Name     : pypi-xmldiff
-Version  : 2.6
-Release  : 19
-URL      : https://files.pythonhosted.org/packages/3c/eb/ffe82725d48ffe3945ea02c419ecbf12acf4090bc4d67e22d4c204f9130a/xmldiff-2.6.tar.gz
-Source0  : https://files.pythonhosted.org/packages/3c/eb/ffe82725d48ffe3945ea02c419ecbf12acf4090bc4d67e22d4c204f9130a/xmldiff-2.6.tar.gz
+Version  : 2.6.1
+Release  : 20
+URL      : https://files.pythonhosted.org/packages/c0/7f/1d2e4db9bf7af98a20b82d81cf0ac0ed25b49fcf8821822ee2507754593b/xmldiff-2.6.1.tar.gz
+Source0  : https://files.pythonhosted.org/packages/c0/7f/1d2e4db9bf7af98a20b82d81cf0ac0ed25b49fcf8821822ee2507754593b/xmldiff-2.6.1.tar.gz
 Summary  : Creates diffs of XML files
 Group    : Development/Tools
 License  : MIT
@@ -65,10 +65,10 @@ python3 components for the pypi-xmldiff package.
 
 
 %prep
-%setup -q -n xmldiff-2.6
-cd %{_builddir}/xmldiff-2.6
+%setup -q -n xmldiff-2.6.1
+cd %{_builddir}/xmldiff-2.6.1
 pushd ..
-cp -a xmldiff-2.6 buildavx2
+cp -a xmldiff-2.6.1 buildavx2
 popd
 
 %build
@@ -76,7 +76,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680552942
+export SOURCE_DATE_EPOCH=1680706489
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
