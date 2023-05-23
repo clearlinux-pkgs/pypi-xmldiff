@@ -1,5 +1,5 @@
 PKG_NAME := pypi-xmldiff
-URL = https://files.pythonhosted.org/packages/c0/7f/1d2e4db9bf7af98a20b82d81cf0ac0ed25b49fcf8821822ee2507754593b/xmldiff-2.6.1.tar.gz
+URL = https://files.pythonhosted.org/packages/7c/5d/75f88f059d3929554ebf9aaa16b9a7990f8146e8dacd44aad9889b826876/xmldiff-2.6.3.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common

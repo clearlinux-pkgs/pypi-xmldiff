@@ -4,10 +4,10 @@
 # Using build pattern: distutils3
 #
 Name     : pypi-xmldiff
-Version  : 2.6.1
-Release  : 20
-URL      : https://files.pythonhosted.org/packages/c0/7f/1d2e4db9bf7af98a20b82d81cf0ac0ed25b49fcf8821822ee2507754593b/xmldiff-2.6.1.tar.gz
-Source0  : https://files.pythonhosted.org/packages/c0/7f/1d2e4db9bf7af98a20b82d81cf0ac0ed25b49fcf8821822ee2507754593b/xmldiff-2.6.1.tar.gz
+Version  : 2.6.3
+Release  : 21
+URL      : https://files.pythonhosted.org/packages/7c/5d/75f88f059d3929554ebf9aaa16b9a7990f8146e8dacd44aad9889b826876/xmldiff-2.6.3.tar.gz
+Source0  : https://files.pythonhosted.org/packages/7c/5d/75f88f059d3929554ebf9aaa16b9a7990f8146e8dacd44aad9889b826876/xmldiff-2.6.3.tar.gz
 Summary  : Creates diffs of XML files
 Group    : Development/Tools
 License  : MIT
@@ -16,8 +16,6 @@ Requires: pypi-xmldiff-license = %{version}-%{release}
 Requires: pypi-xmldiff-python = %{version}-%{release}
 Requires: pypi-xmldiff-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
-BuildRequires : pypi(lxml)
-BuildRequires : pypi(setuptools)
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -65,10 +63,10 @@ python3 components for the pypi-xmldiff package.
 
 
 %prep
-%setup -q -n xmldiff-2.6.1
-cd %{_builddir}/xmldiff-2.6.1
+%setup -q -n xmldiff-2.6.3
+cd %{_builddir}/xmldiff-2.6.3
 pushd ..
-cp -a xmldiff-2.6.1 buildavx2
+cp -a xmldiff-2.6.3 buildavx2
 popd
 
 %build
@@ -76,15 +74,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680706489
+export SOURCE_DATE_EPOCH=1684870477
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
